@@ -1,24 +1,17 @@
 <?php
-    require_once 'load.php';
+    ini_set('display_errors', 1);
 
-    if(isset($_GET['filter'])){
-        $args = array(
-            'tbl'=>'tbl_movies',
-            'tbl2'=>'tbl_genre',
-            'tbl3'=>'tbl_mov_genre',
-            'col'=>'movies_id',
-            'col2'=>'genre_id',
-            'col3'=>'genre_name',
-            'filter'=>$_GET['filter']
-        );
+    require_once 'config/database.php';
+    require_once 'admin/scripts/read.php';
 
-        $getMovies = getMoviesByFilter($args);
-    }else{
+    if(isset($_GET['id'])){
         $movie_table = 'tbl_movies';
-        $getMovies =  getAll($movie_table);
+        $id = $_GET['id'];
+        $col = 'movies_id';
+
+
+        $getMovies = getSingleMovie($movie_table, $col, $id);
     }
-    // var_dump($getMovies);
-    // exit;
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +29,8 @@
             <img src="images/<?php echo $row['movies_cover'];?>" alt="<?php echo $row['movies_title'];?>"/>
             <h2><?php echo $row['movies_title']; ?></h2>
             <h4><?php echo $row['movies_year']; ?></h4>
-            <a href="details.php?id=<?php echo $row['movies_id'];?>">Read more.. </a>
+            <p><?php echo $row['movies_storyline']; ?></p>
+            <a href="index.php">Back..</a>
         </div>
     <?php endwhile;?>
     <?php include_once 'templates/footer.php'; ?>
