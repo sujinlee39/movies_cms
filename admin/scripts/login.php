@@ -31,6 +31,9 @@ function login($username, $password, $ip){
         while($founduser = $user_match->fetch(PDO::FETCH_ASSOC)){
             $id = $founduser['user_id'];
 
+            $_SESSION['user_id'] = $id;
+            $_SESSION['user_name'] = $founduser['user_fname'];
+
             // TODO:: update the user table and set the user_ip colum to be $ip
             // Hint: 1. write the proper SQL query to do update
             //       2. Refer the syntax above how to execute query properly
@@ -54,4 +57,15 @@ function login($username, $password, $ip){
         return 'User does not exist!';
     }
 
+}
+
+function confirm_logged_in(){
+    if(!isset($_SESSION['user_id'])){
+        redirect_to('admin_login.php');
+    }
+}
+
+function logout(){
+    session_destroy();
+    redirect_to('admin_login.php');
 }
