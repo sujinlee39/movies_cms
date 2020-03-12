@@ -1,0 +1,13 @@
+//TODO==> 5:40
+
+1. in Dashboard page, create an link to `admin_deleteuser.php`
+
+2. create a `admin_deleteuser.php` directly under `admin` folder
+
+3.within `admin_deleteuser.php` pull all users from DB and display as `<table>` HTML with the following colums
+`user ID`,
+`user name`,
+`user email`,
+`delete`
+
+4. create an link in the 'delete` colum that links to 'admin_deleteuser.php?id=USERID`
