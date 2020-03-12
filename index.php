@@ -30,6 +30,7 @@
     <title>Welcom to the Movie CMS!</title>
 </head>
 <body>
+    <a href="admin/admin_login.php">Login</a>
     <?php include_once 'templates/header.php'; ?>
     <?php while($row = $getMovies->fetch(PDO::FETCH_ASSOC)):?>
         <div class="movie-item">
